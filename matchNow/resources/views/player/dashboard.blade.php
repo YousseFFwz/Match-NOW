@@ -1,4 +1,3 @@
-<!-- resources/views/player/dashboard.blade.php -->
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -37,15 +36,7 @@
                 <p class="text-gray-500">Manage your football profile</p>
             </a>
 
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-lg font-bold">Teams</h3>
-                <p class="text-gray-500">Coming soon...</p>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-lg font-bold">Matches</h3>
-                <p class="text-gray-500">Coming soon...</p>
-            </div>
+            
 
             <a href="/players" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition block">
                 <h3 class="text-lg font-bold">Players</h3>
@@ -70,6 +61,43 @@
             </p>
 
         </a>
+@if(auth()->user()->profile->team_id)
+        <a href="/my-matches"
+   class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition border-l-4 border-green-500">
+
+    <h3 class="text-lg font-bold">My Matches</h3>
+    <p class="text-gray-500 text-sm">
+        See your team matches
+    </p>
+
+</a>
+@endif
+
+@if(auth()->user()->profile && !auth()->user()->profile->team_id)
+
+<a href="/player-games/create"
+   class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition border-l-4 border-blue-500">
+
+    <h3 class="text-lg font-bold">Create Match</h3>
+
+    <p class="text-gray-500 text-sm mt-1">
+        Create a match with players
+    </p>
+
+</a>
+
+<a href="/player-games"
+   class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition border-l-4 border-green-500">
+
+    <h3 class="text-lg font-bold">My Matches</h3>
+
+    <p class="text-gray-500 text-sm mt-1">
+        View and join player matches
+    </p>
+
+</a>
+
+@endif
 
         </div>
 

@@ -69,16 +69,30 @@
 
             </a>
 
-            <!-- Matches -->
-            <a href="#"
-               class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition border-l-4 border-yellow-500">
 
-                <h3 class="text-lg font-bold">Matches</h3>
-                <p class="text-gray-500 text-sm mt-1">
-                    Manage matches
-                </p>
+    <!-- 🔥 Create Match -->
+    <a href="/games/create"
+       class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition border-l-4 border-purple-500">
 
-            </a>
+        <h3 class="text-lg font-bold">Create Match</h3>
+        <p class="text-gray-500 text-sm">
+            Organize a new match
+        </p>
+
+    </a>
+
+    <!-- 🔥 Find Matches -->
+    <a href="/games"
+       class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition border-l-4 border-yellow-500">
+
+        <h3 class="text-lg font-bold">Find Matches</h3>
+        <p class="text-gray-500 text-sm">
+            Browse available matches
+        </p>
+
+    </a>
+
+
 
         </div>
 

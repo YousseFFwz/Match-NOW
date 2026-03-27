@@ -3,8 +3,14 @@
 <div class="min-h-screen bg-gray-100 p-10">
 
     <!-- Back -->
-    <a href="{{ auth()->user()->role === 'team_owner' ? '/team-dashboard' : '/dashboard' }}"
-       class="inline-block mb-6 px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+    <a href="
+    {{ auth()->user()->role === 'team_owner' 
+        ? '/team-dashboard' 
+        : (auth()->user()->role === 'admin' 
+            ? '/admin' 
+            : '/dashboard') 
+    }}"
+    class="inline-block mb-6 px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
         ← Back
     </a>
 

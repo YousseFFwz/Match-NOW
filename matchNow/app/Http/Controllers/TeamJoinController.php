@@ -42,11 +42,11 @@ class TeamJoinController extends Controller
 
 
     public function show($id)
-    {
-        $team = Team::with('players.user')->findOrFail($id);
+{
+    $team = \App\Models\Team::findOrFail($id);
 
-        return view('player.team-show', compact('team'));
-    }
+return view('player.team-show', compact('team'));
+}
 
 
    
