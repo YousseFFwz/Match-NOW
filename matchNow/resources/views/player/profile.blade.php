@@ -70,11 +70,11 @@
         </select>
 
         <!-- Height -->
-        <input name="height" value="{{ $profile?->height }}" placeholder="Height (cm)"
+        <input name="height" value="{{ $profile?->height }} (cm)" placeholder="Height (cm)"
             class="p-3 border rounded-lg">
 
         <!-- Weight -->
-        <input name="weight" value="{{ $profile?->weight }}" placeholder="Weight (kg)"
+        <input name="weight" value="{{ $profile?->weight }} (kg)" placeholder="Weight (kg)"
             class="p-3 border rounded-lg">
 
         <!-- Save -->

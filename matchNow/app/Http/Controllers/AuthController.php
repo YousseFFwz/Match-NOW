@@ -42,7 +42,7 @@ class AuthController extends Controller
             Profile::create([
                 'user_id' => $user->id,
             ]);
-        }
+        } 
 
         // TEAM OWNER → create team مباشرة
         if ($user->role === 'team_owner') {
