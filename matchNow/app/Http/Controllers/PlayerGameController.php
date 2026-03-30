@@ -103,5 +103,16 @@ public function join($id)
 
 
 
+public function show($id)
+{
+    $game = \App\Models\PlayerGame::with('players', 'messages.user', 'terrain')
+        ->findOrFail($id);
 
+    // 🔐 security (غير players يدخلوا)
+    if (!$game->players->contains(auth()->id())) {
+        return redirect('/player-games')->with('error', 'Access denied');
+    }
+
+    return view('player_games.show', compact('game'));
+}
 }

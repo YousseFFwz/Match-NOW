@@ -22,4 +22,8 @@ class PlayerGame extends Model
     {
         return $this->belongsTo(Terrain::class);
     }
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

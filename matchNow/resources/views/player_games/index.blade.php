@@ -87,6 +87,16 @@
                 @endforeach
     
             </div>
+
+            @if($game->players->contains(auth()->id()))
+
+                <a href="/player-games/{{ $game->id }}"
+                class="mt-4 block text-center bg-gray-900 text-white p-2 rounded-lg hover:bg-black">
+
+                    Open Chat 💬
+                </a>
+
+            @endif
         </div>
 
 

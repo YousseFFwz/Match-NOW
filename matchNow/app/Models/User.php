@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(PlayerGame::class, 'player_game_users');
     }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

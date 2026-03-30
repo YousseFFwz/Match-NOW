@@ -34,6 +34,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamJoinController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PlayerGameController;
 
 Route::middleware(['auth', 'role:team_owner'])->group(function () {
@@ -80,6 +81,10 @@ Route::middleware(['auth', 'role:player'])->group(function () {
 
     Route::get('/player-games', [PlayerGameController::class, 'index']);
     Route::post('/player-games/{id}/join', [PlayerGameController::class, 'join']);
+
+
+    Route::post('/player-games/{id}/message', [MessageController::class, 'store']);
+    Route::get('/player-games/{id}', [PlayerGameController::class, 'show']);
 
 });
 

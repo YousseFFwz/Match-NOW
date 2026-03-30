@@ -63,6 +63,12 @@ public function store(Request $request)
         return back()->with('error', 'Your team already has a match at this time');
     }
 
+    $playersCount = $team->players()->count();
+
+    if ($playersCount < 5) {
+        return back()->with('error', 'You need at least 5 players to create a match');
+    }
+
     // ✅ create match
     Game::create([
         'team1_id' => $team->id,
@@ -97,24 +103,47 @@ public function store(Request $request)
     return view('games.index', compact('games'));
 }
 
-    // accept match
     public function accept($id)
-    {
-        $game = Game::findOrFail($id);
+{
+    $game = Game::findOrFail($id);
 
-        $team = auth()->user()->team;
+    $team = auth()->user()->team;
 
-        if ($game->team1_id == $team->id) {
-            return back()->with('error', 'You cannot accept your own match');
-        }
-
-        $game->update([
-            'team2_id' => $team->id,
-            'status' => 'accepted'
-        ]);
-
-        return back()->with('success', 'Match accepted');
+    // ❌ نفس الفريق
+    if ($game->team1_id == $team->id) {
+        return back()->with('error', 'You cannot accept your own match');
     }
+
+    // ❌ team خاصها على الأقل 5 لاعبين
+    if ($team->players()->count() < 5) {
+        return back()->with('error', 'You need at least 5 players to accept a match');
+    }
+
+    // ❌ match already taken
+    if ($game->team2_id !== null) {
+        return back()->with('error', 'Match already accepted');
+    }
+
+    // ❌ conflict ديال الوقت
+    $conflict = Game::where(function ($q) use ($team) {
+            $q->where('team1_id', $team->id)
+              ->orWhere('team2_id', $team->id);
+        })
+        ->where('match_date', $game->match_date)
+        ->exists();
+
+    if ($conflict) {
+        return back()->with('error', 'Your team already has a match at this time');
+    }
+
+    // ✅ accept match
+    $game->update([
+        'team2_id' => $team->id,
+        'status' => 'accepted'
+    ]);
+
+    return back()->with('success', 'Match accepted successfully');
+}
 
 
 
